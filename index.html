@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏮 千角灯3D拼接游戏</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #1a237e 0%, #311b92 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 40px;
+        }
+        .lantern-icon {
+            font-size: 80px;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        h1 {
+            font-size: 3em;
+            margin: 20px 0;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+        .game-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .menu-card {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .menu-card:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        .card-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .card-desc {
+            font-size: 0.9em;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+        .start-btn {
+            background: linear-gradient(45deg, #ff4081, #f50057);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 30px 0;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .start-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 64, 129, 0.4);
+        }
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        .feature-item {
+            text-align: center;
+            min-width: 150px;
+        }
+        .feature-num {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ffeb3b;
+            margin-bottom: 10px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="lantern-icon">🏮</div>
+        <h1>千角灯3D拼接游戏</h1>
+        <div class="subtitle">
+            传承千年的中国传统灯笼工艺，通过3D互动技术重现。<br>
+            亲手拼接每一个部件，了解榫卯结构的智慧，创造属于你的千角灯。
+        </div>
+    </div>
+    
+    <div class="game-container">
+        <h2 style="margin-bottom: 40px;">🎮 游戏功能</h2>
+        
+        <div class="menu-grid">
+            <div class="menu-card" onclick="openPage('making')">
+                <div class="card-icon">🔨</div>
+                <div class="card-title">制作工坊</div>
+                <div class="card-desc">学习千角灯制作全流程，从材料到完成</div>
+            </div>
+            
+            <div class="menu-card" onclick="openPage('hanging')">
+                <div class="card-icon">🎨</div>
+                <div class="card-title">实景预览</div>
+                <div class="card-desc">在不同场景中预览千角灯悬挂效果</div>
+            </div>
+            
+            <div class="menu-card" onclick="openPage('create')">
+                <div class="card-icon">✨</div>
+                <div class="card-title">自由创作</div>
+                <div class="card-desc">设计独特的千角灯样式和装饰</div>
+            </div>
+            
+            <div class="menu-card" onclick="openPage('learn')">
+                <div class="card-icon">📚</div>
+                <div class="card-title">文化学习</div>
+                <div class="card-desc">了解千角灯的历史和文化意义</div>
+            </div>
+        </div>
+        
+        <button class="start-btn" onclick="startGame()">
+            🚀 立即开始游戏
+            <span style="font-size: 0.8em;">→</span>
+        </button>
+        
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-num" id="visitorCount">0</div>
+                <div>今日访问</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">100%</div>
+                <div>免费游玩</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">24/7</div>
+                <div>在线可用</div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-num">🎯</div>
+                <div>新手友好</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>© 2023 千角灯文化遗产数字化项目 | 基于GitHub Pages部署</p>
+        <p style="margin-top: 10px;">版本: v1.0 | 最后更新: <span id="currentDate"></span></p>
+    </div>
+    
+    <script>
+        // 设置当前日期
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString('zh-CN');
+        
+        // 模拟访问计数
+        let count = Math.floor(Math.random() * 100) + 50;
+        document.getElementById('visitorCount').textContent = count;
+        setInterval(() => {
+            count++;
+            document.getElementById('visitorCount').textContent = count;
+        }, 5000);
+        
+        function startGame() {
+            const btn = document.querySelector('.start-btn');
+            btn.innerHTML = '⏳ 加载中...';
+            btn.style.background = 'linear-gradient(45deg, #2196F3, #1976D2)';
+            
+            setTimeout(() => {
+                openPage('making');
+            }, 1000);
+        }
+        
+        function openPage(page) {
+            alert('正在进入 ' + page + ' 页面...\n完整功能开发中');
+            // 实际部署时替换为：
+            // window.location.href = page + '.html';
+        }
+        
+        // 添加一些动画效果
+        document.querySelectorAll('.menu-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
